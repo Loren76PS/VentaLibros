@@ -1,0 +1,63 @@
+body{
+    background: #F5F5F5;
+}
+nav {
+    height: 4em;
+    z-index: 100;
+    /*clip-path: polygon(0 0, 100% 0, 100% 60%, 0% 100%);*/
+}
+.navbar-brand {
+    font-size: 3em;
+    font-family: 'Josefin Slab', serif;
+    position: relative;
+    left: 5%;
+}
+.nav-item {
+    font-size: 1.3em;
+    margin-left: 1em;
+}
+.section-1 {
+    height: 320px;
+    background-image: url("../images/bg1.jpg");
+    min-width: 100%;
+    min-height: 100%;
+    position: relative;
+    left: 0;
+    z-index: 0;
+    border: 30px solid white;
+}
+
+.section-1, .special {
+    color: rgba(255,255,255,0.8);
+    font-size: 3.5em;
+    font-family: 'Muli',sans-serif;
+    padding: 20px;
+}
+.special {
+    color: rgba(255,255,255,1);
+    padding: 0;
+    margin: 0;
+    font-family: 'Josefin Slab', serif;
+    font-size: 2em;
+    display: block;
+    position: absolute;
+    right: 10px;
+    bottom: -30px;
+}
+
+.section-2 {
+    height: 90px;
+    background: #fff;
+}
+
+.section-2::after{
+    content: "";
+    position: relative;
+    bottom: -50px;
+    left: calc(50% - 50px);
+    width: 0;
+    height: 0;
+    border-width: 50px 50px 0;
+    border-style: solid;
+    border-color: white transparent transparent;
+}
