@@ -2,59 +2,11 @@
 
 {% block body %}
 
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top navbar-default" style="background-color: rgba(53, 110, 127);">
-        <a class="navbar-brand" href="#">vL</a>
         <div class="container">
+            <div class="content">
+                {% block content %}
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown link
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="btn btn-info btn-nav align-middle">Sign in</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="btn btn-info btn-nav align-middle">Sign up</a>
-                </li>
-            </ul>
-        </div>
-        </div>
-    </nav>
-<div class="container section-1">
-    <p>Compra y vende tus libros y apuntes en</p>
-    <div class="special">vendoLibros.</div>
-</div>
-<div class="section-2">
-    <div class="container">
-    <div class=" justify-content-center w-70 p-3">
-        <div class="form-group">
-            <input type="text" class="form-control text-center" placeholder="Encuentra lo que buscas">
+            {% endblock %}
         </div>
     </div>
-    </div>
-</div>
-<div class="section-3">
-
-</div>
 {% endblock %}
-

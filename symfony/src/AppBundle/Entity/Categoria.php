@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Etiqueta
+ * Categoria
  *
- * @ORM\Table(name="etiqueta")
+ * @ORM\Table(name="categoria")
  * @ORM\Entity
  */
-class Etiqueta
+class Categoria
 {
     /**
      * @var integer
@@ -31,9 +31,9 @@ class Etiqueta
     /**
      * @var string
      *
-     * @ORM\Column(name="etiqueta", type="string", length=45, nullable=true)
+     * @ORM\Column(name="nombre", type="string", length=45, nullable=true)
      */
-    private $etiqueta;
+    private $nombre;
 
 
 }

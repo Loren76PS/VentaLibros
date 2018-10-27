@@ -23,9 +23,9 @@ fos_user:
     registration:
         confirmation:
             from_email: # Use this node only if you don't want the global email address for the confirmation email
-                address:        ...
-                sender_name:    ...
-            enabled:    false # change to true for required email confirmation
+                address:        'enzogj95@gmail.com'
+                sender_name:    VendoLibros
+            enabled:    true # change to true for required email confirmation
             template:   '@FOSUser/Registration/email.txt.twig'
         form:
             type:               FOS\UserBundle\Form\Type\RegistrationFormType # or 'fos_user_registration' on Symfony < 2.8
@@ -36,8 +36,8 @@ fos_user:
         token_ttl: 86400
         email:
             from_email: # Use this node only if you don't want the global email address for the resetting email
-                address:        ...
-                sender_name:    ...
+                address:        'enzogj95@gmail.com'
+                sender_name:    VendoLibros
             template:   '@FOSUser/Resetting/email.txt.twig'
         form:
             type:               FOS\UserBundle\Form\Type\ResettingFormType # or 'fos_user_resetting' on Symfony < 2.8

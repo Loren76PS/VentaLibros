@@ -32,9 +32,9 @@ class MaterialHasEtiqueta
     private $material;
 
     /**
-     * @var \Etiqueta
+     * @var \Categoria
      *
-     * @ORM\ManyToOne(targetEntity="Etiqueta")
+     * @ORM\ManyToOne(targetEntity="Categoria")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="etiqueta_id", referencedColumnName="id")
      * })

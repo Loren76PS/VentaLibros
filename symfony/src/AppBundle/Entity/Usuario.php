@@ -2,15 +2,16 @@
 
 namespace AppBundle\Entity;
 
+use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Usuario
  *
- * @ORM\Table(name="usuario", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_2265B05D92FC23A8", columns={"username_canonical"}), @ORM\UniqueConstraint(name="UNIQ_2265B05DA0D96FBF", columns={"email_canonical"}), @ORM\UniqueConstraint(name="UNIQ_2265B05DC05FB297", columns={"confirmation_token"})})
+ * @ORM\Table(name="usuario", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_2265B05D92FC23A8", columns={"username_canonical"}), @ORM\UniqueConstraint(name="UNIQ_2265B05DA0D96FBF", columns={"email_canonical"}), @ORM\UniqueConstraint(name="cp_UNIQUE", columns={"cp"}), @ORM\UniqueConstraint(name="UNIQ_2265B05DC05FB297", columns={"confirmation_token"})})
  * @ORM\Entity
  */
-class Usuario
+class Usuario extends BaseUser
 {
     /**
      * @var integer
@@ -19,7 +20,7 @@ class Usuario
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
@@ -52,79 +53,105 @@ class Usuario
     /**
      * @var string
      *
-     * @ORM\Column(name="username", type="string", length=180, nullable=false)
+     * @ORM\Column(name="imagen", type="string", length=45, nullable=true)
      */
-    private $username;
+    private $imagen;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="username_canonical", type="string", length=180, nullable=false)
+     * @return int
      */
-    private $usernameCanonical;
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=180, nullable=false)
+     * @param int $id
      */
-    private $email;
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="email_canonical", type="string", length=180, nullable=false)
+     * @return string
      */
-    private $emailCanonical;
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
 
     /**
-     * @var boolean
-     *
-     * @ORM\Column(name="enabled", type="boolean", nullable=false)
+     * @param string $nombre
      */
-    private $enabled;
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+    }
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="salt", type="string", length=255, nullable=true)
+     * @return string
      */
-    private $salt;
+    public function getProvincia()
+    {
+        return $this->provincia;
+    }
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="password", type="string", length=255, nullable=false)
+     * @param string $provincia
      */
-    private $password;
+    public function setProvincia($provincia)
+    {
+        $this->provincia = $provincia;
+    }
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="last_login", type="datetime", nullable=true)
+     * @return string
      */
-    private $lastLogin;
+    public function getLocalidad()
+    {
+        return $this->localidad;
+    }
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="confirmation_token", type="string", length=180, nullable=true)
+     * @param string $localidad
      */
-    private $confirmationToken;
+    public function setLocalidad($localidad)
+    {
+        $this->localidad = $localidad;
+    }
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="password_requested_at", type="datetime", nullable=true)
+     * @return string
      */
-    private $passwordRequestedAt;
+    public function getCp()
+    {
+        return $this->cp;
+    }
 
     /**
-     * @var array
-     *
-     * @ORM\Column(name="roles", type="array", nullable=false)
+     * @param string $cp
      */
-    private $roles;
+    public function setCp($cp)
+    {
+        $this->cp = $cp;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImagen()
+    {
+        return $this->imagen;
+    }
+
+    /**
+     * @param string $imagen
+     */
+    public function setImagen($imagen)
+    {
+        $this->imagen = $imagen;
+    }
 
 
 }

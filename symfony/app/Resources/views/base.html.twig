@@ -4,21 +4,51 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
-            <!-- Latest compiled and minified CSS -->
+            <!-- Bootstrap -->
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-            <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
-            <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:700" rel="stylesheet">
-            <link href="https://fonts.googleapis.com/css?family=Muli:900" rel="stylesheet">
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+            <!-- Custom stlylesheet -->
+            <link type="text/css" rel="stylesheet" href="{{ asset('css/estilos.css') }}">
+            <link type="text/css" rel="stylesheet" href="{{ asset('css/dropzone.min.css') }}">
         {% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     </head>
     <body>
+    {% block nav %}
+        <div class="navbar-content">
+            <span class="logo"><img src="{{ asset('images/bg/logo.png') }}"> <br>vendoLibros</span>
+            <nav class="group-links">
+                <a class="nav-link active" href="#"><i class="fa fa-search"></i></a>
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <a class="nav-link " href="#">Messages</a>
+                    <a class="nav-link " href="#">New</a>
+                    <a class="nav-link" href="/profile">Profile</a>
+                    <a class="nav-link" href="/logout">Logout</a>
+                {% else %}
+                    <a class="nav-link" href="/login">Sign in</a>
+                    <a class="nav-link" href="/register">Sign up</a>
+                {% endif %}
+                <a class="nav-link " href="#">About Us</a>
+            </nav>
+        </div>
+    {% endblock %}
         {% block body %}{% endblock %}
         {% block javascripts %}
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            {#<script type="text/javascript" src="{{ asset('application/js/bootstrap.min.js') }}"></script>#}
+            {#<script type="text/javascript" src="{{ asset('application/js/owl.carousel.min.js') }}"></script>#}
+            {#<script type="text/javascript" src="{{ asset('application/js/jquery.magnific-popup.js') }}"></script>#}
+            {#<script type="text/javascript" src="{{ asset('application/js/main.js') }}"></script>#}
+            {#<script type="text/javascript" src="{{ asset('application/js/dropzone.js') }}"></script>#}
+
+            {#<script>#}
+                {#// $(document).ready(function () {#}
+                {#//     $('.nav-link').on('click', function () {#}
+                {#//         $('.nav-link').removeClass('active');#}
+                {#//         $(this).addClass('active');#}
+                {#//     })#}
+                {#// });#}
+            {#</script>#}
         {% endblock %}
     </body>
 </html>
