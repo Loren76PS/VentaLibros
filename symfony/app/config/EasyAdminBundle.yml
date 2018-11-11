@@ -1,0 +1,6 @@
+easy_admin:
+    entities:
+        # change the following to the namespaces of your own entities
+        - AppBundle\Entity\Usuario
+        - AppBundle\Entity\Categoria
+        - AppBundle\Entity\Material

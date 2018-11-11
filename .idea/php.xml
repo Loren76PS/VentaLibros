@@ -42,6 +42,9 @@
       <path value="$PROJECT_DIR$/symfony/vendor/sensio/framework-extra-bundle" />
       <path value="$PROJECT_DIR$/symfony/vendor/fig/link-util" />
       <path value="$PROJECT_DIR$/symfony/vendor/friendsofsymfony/user-bundle" />
+      <path value="$PROJECT_DIR$/symfony/vendor/pagerfanta/pagerfanta" />
+      <path value="$PROJECT_DIR$/symfony/vendor/twig/extensions" />
+      <path value="$PROJECT_DIR$/symfony/vendor/easycorp/easyadmin-bundle" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="5.5.0" />

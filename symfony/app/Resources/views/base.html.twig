@@ -10,6 +10,7 @@
             <!-- Custom stlylesheet -->
             <link type="text/css" rel="stylesheet" href="{{ asset('css/estilos.css') }}">
             <link type="text/css" rel="stylesheet" href="{{ asset('css/dropzone.min.css') }}">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     </head>
@@ -21,7 +22,7 @@
                 <a class="nav-link active" href="#"><i class="fa fa-search"></i></a>
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                     <a class="nav-link " href="#">Messages</a>
-                    <a class="nav-link " href="#">New</a>
+                    <a class="nav-link " href="/material/new">New</a>
                     <a class="nav-link" href="/profile">Profile</a>
                     <a class="nav-link" href="/logout">Logout</a>
                 {% else %}
@@ -32,9 +33,10 @@
             </nav>
         </div>
     {% endblock %}
-        {% block body %}{% endblock %}
+    {% block body %}
+    {% endblock %}
         {% block javascripts %}
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
             {#<script type="text/javascript" src="{{ asset('application/js/bootstrap.min.js') }}"></script>#}
             {#<script type="text/javascript" src="{{ asset('application/js/owl.carousel.min.js') }}"></script>#}
             {#<script type="text/javascript" src="{{ asset('application/js/jquery.magnific-popup.js') }}"></script>#}

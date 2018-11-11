@@ -1,0 +1,74 @@
+{% extends 'FOSUserBundle::layout.html.twig' %}
+
+{% block fos_user_content %}
+    <h1>Material creation</h1>
+
+    {{ form_start(form) }}
+    <div id="container">
+        <div class="inner-container">
+            <div class="toggle">
+                <p>Libro</p>
+            </div>
+            <div class="toggle">
+                <p>Apuntes</p>
+            </div>
+        </div>
+        <div class="inner-container" id='toggle-container'>
+            <div class="toggle">
+                <p>Libro</p>
+            </div>
+            <div class="toggle">
+                <p>Apuntes</p>
+            </div>
+        </div>
+    </div>
+    <div id="seleccion">
+
+    </div>
+    <script>
+        var toggle = document.getElementById('container');
+        var toggleContainer = document.getElementById('toggle-container');
+        var toggleNumber;
+
+        var titulo = $('<input>', {
+            'class': 'form-control',
+            'id' : 'titulo',
+            'placeholder': 'titulo'
+        })
+        var isbn = $('<input>', {
+            'class': 'form-control',
+            'id' : 'isbn',
+            'placeholder': 'isbn'
+        })
+        var temas = $('<input>', {
+            'class': 'form-control',
+            'id' : 'temas',
+            'placeholder': 'temas'
+        })
+        $('#seleccion').empty().append(temas)
+        toggle.addEventListener('click', function() {
+            toggleNumber = !toggleNumber;
+            if (toggleNumber) {
+                toggleContainer.style.clipPath = 'inset(0 0 0 50%)';
+                toggleContainer.style.backgroundColor = 'dodgerblue';
+                $('#seleccion').empty().append(titulo).append(isbn)
+
+            } else {
+                toggleContainer.style.clipPath = 'inset(0 50% 0 0)';
+                toggleContainer.style.backgroundColor = 'dodgerblue';
+                $('#seleccion').empty().append(temas)
+            }
+            console.log(toggleNumber)
+        });
+    </script>
+
+        {{ form_widget(form) }}
+        <input type="submit" value="Create" />
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('material_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

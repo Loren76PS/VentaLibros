@@ -57,6 +57,13 @@ class Usuario extends BaseUser
      */
     private $imagen;
 
+
+    public function __construct()
+    {
+        parent::__construct();
+        // your own logic
+        $this->roles = array('ROLE_USER');
+    }
     /**
      * @return int
      */
@@ -153,6 +160,9 @@ class Usuario extends BaseUser
         $this->imagen = $imagen;
     }
 
-
+    public function format()
+    {
+        return false;
+    }
 }
 
