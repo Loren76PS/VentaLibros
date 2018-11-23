@@ -5,9 +5,8 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class MaterialType extends AbstractType
+class MensajeType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -15,21 +14,18 @@ class MaterialType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('descripcion')
-            ->add('precio')
-            ->add('imagenes')
-            ->add('titulo')
-            ->add('isbn')
-            ->add('temas')
-
-        ;
+            ->add('mensaje')
+//            ->add('fechaCreacion')
+//            ->add('usuarioEmisor')
+//            ->add('usuarioReceptor')
+            ;
     }/**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Material'
+            'data_class' => 'AppBundle\Entity\Mensaje'
         ));
     }
 
@@ -38,7 +34,7 @@ class MaterialType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_material';
+        return 'appbundle_mensaje';
     }
 
 

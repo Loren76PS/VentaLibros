@@ -24,16 +24,41 @@ class Categoria
     /**
      * @var string
      *
-     * @ORM\Column(name="tipo", type="string", length=45, nullable=false)
-     */
-    private $tipo;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="nombre", type="string", length=45, nullable=true)
      */
     private $nombre;
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * @param string $nombre
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+    }
 
 
 }

@@ -1,4 +1,4 @@
 app_material:
-    resource: "@AppBundle/Resources/config/routing/material.php"
+    resource: "@AppBundle/Resources/config/routing/material.yml"
     prefix:   /material
 

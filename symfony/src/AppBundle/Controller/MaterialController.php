@@ -3,12 +3,11 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Material;
-use AppBundle\Entity\Usuario;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use FOS\UserBundle\Model\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\User\UserInterface;
+
 /**
  * Material controller.
  *
@@ -39,10 +38,10 @@ class MaterialController extends Controller
      * @Route("/new", name="material_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(UserInterface $user, Request $request)
+    public function newAction(Request $request)
     {
+        $user = $this->getUser();
         $material = new Material();
-
         $form = $this->createForm('AppBundle\Form\MaterialType', $material);
         $form->handleRequest($request);
 

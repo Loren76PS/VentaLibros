@@ -50,11 +50,32 @@ class Material
     private $fechaPublicacion;
 
     /**
-     * @var \integer
+     * @var string
+     *
+     * @ORM\Column(name="titulo", type="string", length=45, nullable=true)
+     */
+    private $titulo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="isbn", type="string", length=45, nullable=true)
+     */
+    private $isbn;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="temas", type="string", length=45, nullable=true)
+     */
+    private $temas;
+
+    /**
+     * @var \Usuario
      *
      * @ORM\ManyToOne(targetEntity="Usuario")
      * @ORM\JoinColumns({
-     * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
      * })
      */
     private $usuario;
@@ -140,7 +161,55 @@ class Material
     }
 
     /**
-     * @return \integer
+     * @return string
+     */
+    public function getTitulo()
+    {
+        return $this->titulo;
+    }
+
+    /**
+     * @param string $titulo
+     */
+    public function setTitulo($titulo)
+    {
+        $this->titulo = $titulo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIsbn()
+    {
+        return $this->isbn;
+    }
+
+    /**
+     * @param string $isbn
+     */
+    public function setIsbn($isbn)
+    {
+        $this->isbn = $isbn;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTemas()
+    {
+        return $this->temas;
+    }
+
+    /**
+     * @param string $temas
+     */
+    public function setTemas($temas)
+    {
+        $this->temas = $temas;
+    }
+
+    /**
+     * @return \Usuario
      */
     public function getUsuario()
     {
@@ -148,7 +217,7 @@ class Material
     }
 
     /**
-     * @param \integer $usuario
+     * @param \Usuario $usuario
      */
     public function setUsuario($usuario)
     {

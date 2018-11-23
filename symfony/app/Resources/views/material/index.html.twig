@@ -1,9 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'FOSUserBundle::layout.html.twig' %}
 
-{% block body %}
+{% block fos_user_content %}
     <h1>Materials list</h1>
 
-    <table>
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th>Id</th>
@@ -11,27 +11,37 @@
                 <th>Precio</th>
                 <th>Imagenes</th>
                 <th>Fechapublicacion</th>
-                <th>Actions</th>
+                <th>Titulo</th>
+                <th>Isbn</th>
+                <th>Temas</th>
+                {#<th>Actions</th>#}
+                <th>Message Link</th>
             </tr>
         </thead>
         <tbody>
+
         {% for material in materials %}
+
             <tr>
                 <td><a href="{{ path('material_show', { 'id': material.id }) }}">{{ material.id }}</a></td>
                 <td>{{ material.descripcion }}</td>
                 <td>{{ material.precio }}</td>
                 <td>{{ material.imagenes }}</td>
                 <td>{% if material.fechaPublicacion %}{{ material.fechaPublicacion|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('material_show', { 'id': material.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('material_edit', { 'id': material.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
+                <td>{{ material.titulo }}</td>
+                <td>{{ material.isbn }}</td>
+                <td>{{ material.temas }}</td>
+                {#<td>#}
+                    {#<ul>#}
+                        {#<li>#}
+                            {#<a href="{{ path('material_show', { 'id': material.id }) }}">show</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="{{ path('material_edit', { 'id': material.id }) }}">edit</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</td>#}
+                <td><a href="{{ path('mensaje_new')}}?user={{ material.usuario }}">{{ material.usuario }}</a></td>
             </tr>
         {% endfor %}
         </tbody>

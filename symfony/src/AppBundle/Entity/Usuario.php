@@ -2,13 +2,13 @@
 
 namespace AppBundle\Entity;
 
-use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * Usuario
  *
- * @ORM\Table(name="usuario", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_2265B05D92FC23A8", columns={"username_canonical"}), @ORM\UniqueConstraint(name="UNIQ_2265B05DA0D96FBF", columns={"email_canonical"}), @ORM\UniqueConstraint(name="cp_UNIQUE", columns={"cp"}), @ORM\UniqueConstraint(name="UNIQ_2265B05DC05FB297", columns={"confirmation_token"})})
+ * @ORM\Table(name="usuario", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_2265B05D92FC23A8", columns={"username_canonical"}), @ORM\UniqueConstraint(name="UNIQ_2265B05DA0D96FBF", columns={"email_canonical"}), @ORM\UniqueConstraint(name="UNIQ_2265B05DC05FB297", columns={"confirmation_token"})})
  * @ORM\Entity
  */
 class Usuario extends BaseUser
@@ -57,13 +57,6 @@ class Usuario extends BaseUser
      */
     private $imagen;
 
-
-    public function __construct()
-    {
-        parent::__construct();
-        // your own logic
-        $this->roles = array('ROLE_USER');
-    }
     /**
      * @return int
      */
@@ -160,9 +153,5 @@ class Usuario extends BaseUser
         $this->imagen = $imagen;
     }
 
-    public function format()
-    {
-        return false;
-    }
 }
 

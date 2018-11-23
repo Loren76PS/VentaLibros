@@ -4,6 +4,7 @@
     <h1>Material creation</h1>
 
     {{ form_start(form) }}
+<div class="form-group">
     <div id="container">
         <div class="inner-container">
             <div class="toggle">
@@ -22,48 +23,57 @@
             </div>
         </div>
     </div>
-    <div id="seleccion">
-
+</div>
+    <div class="form-group">
+        {{ form_row(form.titulo,{ 'attr': {'class': "form-control", 'placeholder': 'form.titulo'|trans}, 'label':false }) }}
     </div>
+    <div class="form-group">
+        {{ form_row(form.isbn,{ 'attr': {'class': "form-control", 'placeholder': 'form.isbn'|trans}, 'label':false }) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.temas,{ 'attr': {'class': "form-control", 'placeholder': 'form.temas'|trans}, 'label':false }) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.descripcion,{ 'attr': {'class': "form-control", 'placeholder': 'form.descripcion'|trans}, 'label':false }) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.precio,{ 'attr': {'class': "form-control", 'placeholder': 'form.precio'|trans}, 'label':false }) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.imagenes,{ 'attr': {'class': "form-control", 'placeholder': 'form.imagenes'|trans}, 'label':false }) }}
+    </div>
+
     <script>
+        $('#appbundle_material_titulo').attr('type','hidden')
+        $('#appbundle_material_isbn').attr('type','hidden')
+        $('#appbundle_material_temas').attr('type','text').attr('required','true')
         var toggle = document.getElementById('container');
         var toggleContainer = document.getElementById('toggle-container');
         var toggleNumber;
 
-        var titulo = $('<input>', {
-            'class': 'form-control',
-            'id' : 'titulo',
-            'placeholder': 'titulo'
-        })
-        var isbn = $('<input>', {
-            'class': 'form-control',
-            'id' : 'isbn',
-            'placeholder': 'isbn'
-        })
-        var temas = $('<input>', {
-            'class': 'form-control',
-            'id' : 'temas',
-            'placeholder': 'temas'
-        })
-        $('#seleccion').empty().append(temas)
+
         toggle.addEventListener('click', function() {
             toggleNumber = !toggleNumber;
+
             if (toggleNumber) {
                 toggleContainer.style.clipPath = 'inset(0 0 0 50%)';
                 toggleContainer.style.backgroundColor = 'dodgerblue';
-                $('#seleccion').empty().append(titulo).append(isbn)
+                $('#appbundle_material_titulo').attr('type','text').attr('required','true')
+                $('#appbundle_material_isbn').attr('type','text').attr('required','true')
+                $('#appbundle_material_temas').attr('type','hidden').attr('required','false')
 
             } else {
                 toggleContainer.style.clipPath = 'inset(0 50% 0 0)';
                 toggleContainer.style.backgroundColor = 'dodgerblue';
-                $('#seleccion').empty().append(temas)
+                $('#appbundle_material_titulo').attr('type','hidden')
+                $('#appbundle_material_isbn').attr('type','hidden')
+                $('#appbundle_material_temas').attr('type','text').attr('required','true')
             }
             console.log(toggleNumber)
         });
     </script>
 
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+    <input type="submit" class="btn btn-secondary" value="Create" />
     {{ form_end(form) }}
 
     <ul>

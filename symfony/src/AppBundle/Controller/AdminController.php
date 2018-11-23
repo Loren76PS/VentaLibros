@@ -8,7 +8,8 @@ class AdminController extends BaseAdminController
 {
     public function createNewUserEntity()
     {
-        return $this->get('fos_user.user_manager')->createUser();
+        return $this->get('fos_user.user_manager')
+            ->createUser();
     }
 
     public function persistUserEntity($user)

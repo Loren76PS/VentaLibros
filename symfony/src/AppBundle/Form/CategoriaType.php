@@ -5,31 +5,22 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class MaterialType extends AbstractType
+class CategoriaType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('descripcion')
-            ->add('precio')
-            ->add('imagenes')
-            ->add('titulo')
-            ->add('isbn')
-            ->add('temas')
-
-        ;
+        $builder->add('nombre');
     }/**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Material'
+            'data_class' => 'AppBundle\Entity\Categoria'
         ));
     }
 
@@ -38,7 +29,7 @@ class MaterialType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_material';
+        return 'appbundle_categoria';
     }
 
 

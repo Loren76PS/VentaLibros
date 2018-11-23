@@ -13,9 +13,9 @@ use Doctrine\ORM\Mapping as ORM;
 class Mensaje
 {
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="id", type="string", length=45, nullable=false)
+     * @ORM\Column(name="id", type="integer", length=11, nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -54,6 +54,86 @@ class Mensaje
      * })
      */
     private $usuarioReceptor;
+
+    /**
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param string $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMensaje()
+    {
+        return $this->mensaje;
+    }
+
+    /**
+     * @param string $mensaje
+     */
+    public function setMensaje($mensaje)
+    {
+        $this->mensaje = $mensaje;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getFechaCreacion()
+    {
+        return $this->fechaCreacion;
+    }
+
+    /**
+     * @param \DateTime $fechaCreacion
+     */
+    public function setFechaCreacion($fechaCreacion)
+    {
+        $this->fechaCreacion = $fechaCreacion;
+    }
+
+    /**
+     * @return \Usuario
+     */
+    public function getUsuarioEmisor()
+    {
+        return $this->usuarioEmisor;
+    }
+
+    /**
+     * @param \Usuario $usuarioEmisor
+     */
+    public function setUsuarioEmisor($usuarioEmisor)
+    {
+        $this->usuarioEmisor = $usuarioEmisor;
+    }
+
+    /**
+     * @return \Usuario
+     */
+    public function getUsuarioReceptor()
+    {
+        return $this->usuarioReceptor;
+    }
+
+    /**
+     * @param \Usuario $usuarioReceptor
+     */
+    public function setUsuarioReceptor($usuarioReceptor)
+    {
+        $this->usuarioReceptor = $usuarioReceptor;
+    }
 
 
 }
