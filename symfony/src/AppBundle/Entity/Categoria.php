@@ -29,6 +29,12 @@ class Categoria
     private $nombre;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="parent", type="integer", nullable=false)
+     */
+    private $parent;
+    /**
      * @return int
      */
     public function getId()
@@ -58,6 +64,22 @@ class Categoria
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
+    }
+
+    /**
+     * @return int
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * @param int $parent
+     */
+    public function setParent($parent)
+    {
+        $this->parent = $parent;
     }
 
 

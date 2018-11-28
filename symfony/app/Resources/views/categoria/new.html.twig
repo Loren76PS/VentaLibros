@@ -4,8 +4,10 @@
     <h1>Categorium creation</h1>
 
     {{ form_start(form) }}
+    {{ form_row(form.parent,{ 'attr': {'class': "form-control", 'placeholder': 'form.parent'|trans}, 'label':false }) }}
         {{ form_widget(form) }}
         <input type="submit" value="Create" />
+
     {{ form_end(form) }}
 
     <ul>

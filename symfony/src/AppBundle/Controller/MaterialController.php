@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Material;
+use AppBundle\Entity\MaterialHasEtiqueta;
 use FOS\UserBundle\Model\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -44,8 +45,12 @@ class MaterialController extends Controller
         $material = new Material();
         $form = $this->createForm('AppBundle\Form\MaterialType', $material);
         $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+
+        $categorias = $em->getRepository('AppBundle:Categoria')->findAll();
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $em = $this->getDoctrine()->getManager();
             $classUser = $em->getRepository('AppBundle:Usuario')->find($user);
             $material->setUsuario($classUser);
@@ -54,11 +59,22 @@ class MaterialController extends Controller
             $em->persist($material);
             $em->flush();
 
+            $arrayCat = $_REQUEST['tag'];
+
+            foreach ($arrayCat as  $cat){
+                $categ = $em->getRepository('AppBundle:Categoria')->findOneById($cat);
+                $materialCat = new MaterialHasEtiqueta();
+                $materialCat->setEtiqueta($categ);
+                $materialCat->setMaterial($material);
+                $em->persist($materialCat);
+                $em->flush();
+            }
             return $this->redirectToRoute('material_show', array('id' => $material->getId()));
         }
 
         return $this->render('material/new.html.twig', array(
             'material' => $material,
+            'categorias' => $categorias,
             'form' => $form->createView(),
         ));
     }

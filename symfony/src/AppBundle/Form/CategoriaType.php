@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,7 +14,11 @@ class CategoriaType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nombre');
+        $builder->add('nombre')
+                ->add('parent',EntityType::class, array(
+                    "class" => 'AppBundle:Categoria',
+                    "choice_label" => 'nombre'
+                ));
     }/**
      * {@inheritdoc}
      */
@@ -32,5 +37,5 @@ class CategoriaType extends AbstractType
         return 'appbundle_categoria';
     }
 
-
 }
+

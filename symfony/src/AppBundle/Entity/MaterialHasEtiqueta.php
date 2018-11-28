@@ -41,6 +41,54 @@ class MaterialHasEtiqueta
      */
     private $etiqueta;
 
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return \Material
+     */
+    public function getMaterial()
+    {
+        return $this->material;
+    }
+
+    /**
+     * @param \Material $material
+     */
+    public function setMaterial($material)
+    {
+        $this->material = $material;
+    }
+
+    /**
+     * @return \Categoria
+     */
+    public function getEtiqueta()
+    {
+        return $this->etiqueta;
+    }
+
+    /**
+     * @param \Categoria $etiqueta
+     */
+    public function setEtiqueta($etiqueta)
+    {
+        $this->etiqueta = $etiqueta;
+    }
+
 
 }
 

@@ -5,7 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class MaterialType extends AbstractType
 {
@@ -21,7 +21,6 @@ class MaterialType extends AbstractType
             ->add('titulo')
             ->add('isbn')
             ->add('temas')
-
         ;
     }/**
      * {@inheritdoc}

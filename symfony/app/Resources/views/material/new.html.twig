@@ -1,5 +1,5 @@
 {% extends 'FOSUserBundle::layout.html.twig' %}
-
+{% trans_default_domain 'FOSUserBundle' %}
 {% block fos_user_content %}
     <h1>Material creation</h1>
 
@@ -8,18 +8,18 @@
     <div id="container">
         <div class="inner-container">
             <div class="toggle">
-                <p>Libro</p>
+                <p>{{ 'form.libro'|trans }}</p>
             </div>
             <div class="toggle">
-                <p>Apuntes</p>
+                <p>{{ 'form.apuntes'|trans }}</p>
             </div>
         </div>
         <div class="inner-container" id='toggle-container'>
             <div class="toggle">
-                <p>Libro</p>
+                <p>{{ 'form.libro'|trans }}</p>
             </div>
             <div class="toggle">
-                <p>Apuntes</p>
+                <p>{{ 'form.apuntes'|trans }}</p>
             </div>
         </div>
     </div>
@@ -42,7 +42,13 @@
     <div class="form-group">
         {{ form_row(form.imagenes,{ 'attr': {'class': "form-control", 'placeholder': 'form.imagenes'|trans}, 'label':false }) }}
     </div>
-
+    <div class="form-group">
+        <select name="tag[]" id="tag" multiple class="form-control">
+            {% for categoria in categorias %}
+                <option value="{{ categoria.id }}">{{ categoria.nombre }}</option>
+            {% endfor %}
+        </select>
+    </div>
     <script>
         $('#appbundle_material_titulo').attr('type','hidden')
         $('#appbundle_material_isbn').attr('type','hidden')

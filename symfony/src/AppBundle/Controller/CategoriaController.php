@@ -39,12 +39,14 @@ class CategoriaController extends Controller
      */
     public function newAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
         $categoria = new Categoria();
         $form = $this->createForm('AppBundle\Form\CategoriaType', $categoria);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $categoria->setParent($form->get('parent')->getData()->getId());
             $em->persist($categoria);
             $em->flush();
 
@@ -52,7 +54,7 @@ class CategoriaController extends Controller
         }
 
         return $this->render('categoria/new.html.twig', array(
-            'categorium' => $categoria,
+            'categoria' => $categoria,
             'form' => $form->createView(),
         ));
     }
