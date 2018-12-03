@@ -5,7 +5,8 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Mensaje;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Mensaje controller.
@@ -17,22 +18,69 @@ class MensajeController extends Controller
     /**
      * Lists all mensaje entities.
      *
-     * @Route("/", name="mensaje_index")
+     * @Route("/list/", name="mensaje_conversacion")
      * @Method("GET")
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $userReceptor = $em->getRepository('AppBundle:Usuario')->findOneByUsername($_GET['user']);
 
-        $mensajesEnviados = $em->getRepository('AppBundle:Mensaje')->findByUsuarioEmisor($this->getUser());
-        $mensajesRecibidos = $em->getRepository('AppBundle:Mensaje')->findByUsuarioReceptor($this->getUser());
+        $parameters = array('usuario' => $this->getUser(), 'usuarioReceptor' => $userReceptor);
+        $query = $em->createQuery('SELECT n1
+                                    FROM AppBundle\Entity\Mensaje n1
+                                    WHERE n1.usuarioEmisor = :usuario
+                                    AND n1.usuarioReceptor = :usuarioReceptor')
+            ->setParameters($parameters);
+        $query2 = $em->createQuery('SELECT n1
+                                    FROM AppBundle\Entity\Mensaje n1
+                                    WHERE n1.usuarioEmisor = :usuarioReceptor
+                                    AND n1.usuarioReceptor = :usuario
+                                    ')
+            ->setParameters($parameters);
+        $messajes = $query->execute();
+        $messajes2 = $query2->execute();
 
-        return $this->render('mensaje/index.html.twig', array(
-            'mensajesEnviados' => $mensajesEnviados,
-            'mensajesRecibidos' => $mensajesRecibidos,
+        $messajesTotal = array_merge($messajes,$messajes2);
+        usort($messajesTotal, function ($a, $b) {
+            return $a->getId() - $b->getId();
+        });
+        return $this->render('mensaje/conversacion.html.twig', array(
+            'mensajes' => $messajesTotal,
         ));
     }
+    /**
+     * Lists all contacts entities.
+     *
+     * @Route("/", name="mensaje_index")
+     * @Method("GET")
+     */
+    public function ContactsAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery('SELECT IDENTITY(n1.usuarioEmisor)
+                                    FROM AppBundle\Entity\Mensaje n1
+                                    WHERE n1.usuarioReceptor = :usuario OR n1.usuarioEmisor = :usuario')
+            ->setParameter('usuario',$this->getUser());
+        $query1 = $em->createQuery('SELECT IDENTITY(n1.usuarioReceptor)
+                                    FROM AppBundle\Entity\Mensaje n1
+                                    WHERE n1.usuarioReceptor = :usuario OR n1.usuarioEmisor = :usuario')
+            ->setParameter('usuario',$this->getUser());
+        $usuariosTotal = array_merge($query->execute(), $query1->execute());
+        $idArray = array();
+        foreach ($usuariosTotal as $user){
+            $idArray[] = $user[1];
+        }
+        $idArray = array_merge(array_diff(array_unique($idArray), array($this->getUser()->getId())));
+        $userObject = array();
+        for ($i = 0; $i <= count($idArray)-1; $i++) {
+            $userObject[] = $em->getRepository('AppBundle:Usuario')->findOneById($idArray[$i]);
+        }
 
+        return $this->render('mensaje/index.html.twig', array(
+            'usuarios' => $userObject,
+        ));
+    }
     /**
      * Creates a new mensaje entity.
      *

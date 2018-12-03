@@ -1,44 +1,10 @@
 {% extends 'FOSUserBundle::layout.html.twig' %}
 
 {% block fos_user_content %}
-    <h2>Mensajes Recibidos</h2>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Mensaje</th>
-                <th>Fechacreacion</th>
-                <th>Enviar Mensaje</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for mensaje in mensajesRecibidos %}
-            <tr>
-                <td>{{ mensaje.mensaje }}</td>
-                <td>{% if mensaje.fechaCreacion %}{{ mensaje.fechaCreacion|date('Y-m-d') }}{% endif %}</td>
-                <td><a href="{{ path('mensaje_new')}}?user={{ mensaje.usuarioEmisor }}">{{ mensaje.usuarioEmisor  }}</a></td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    <h2>Mensajes Enviados</h2>
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Mensaje</th>
-            <th>Fechacreacion</th>
-            <th>Enviar mensaje</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for mensaje in mensajesEnviados %}
-            <tr>
-                <td>{{ mensaje.mensaje }}</td>
-                <td>{% if mensaje.fechaCreacion %}{{ mensaje.fechaCreacion|date('Y-m-d') }}{% endif %}</td>
-                <td><a href="{{ path('mensaje_new')}}?user={{ mensaje.usuarioReceptor }}">{{ mensaje.usuarioReceptor  }}</a></td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    {% for user in usuarios %}
+        <li><a href="{{ path('mensaje_conversacion')}}?user={{ user.username }}">{{ user.username }}</a> </li>
+
+    {% endfor %}
 {% endblock %}
